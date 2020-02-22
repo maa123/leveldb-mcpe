@@ -828,13 +828,13 @@ TEST(TableTest, ApproximateOffsetOfPlain) {
 }
 
 static bool SnappyCompressionSupported() {
-#ifdef SNAPPY
+/*#ifdef SNAPPY
   std::string out;
   Slice in = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
   return port::Snappy_Compress(in.data(), in.size(), &out);
-#else
+#else*/
   return false;
-#endif
+//#endif
 }
 
 TEST(TableTest, ApproximateOffsetOfCompressed) {
@@ -854,7 +854,7 @@ TEST(TableTest, ApproximateOffsetOfCompressed) {
   KVMap kvmap;
   Options options;
   options.block_size = 1024;
-  options.compressors[0] = new leveldb::SnappyCompressor();
+  //options.compressors[0] = new leveldb::SnappyCompressor();
   c.Finish(options, &keys, &kvmap);
 
   // Expected upper and lower bounds of space used by compressible strings.
